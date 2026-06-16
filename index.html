@@ -8,7 +8,10 @@
   html, body {
     margin: 0;
     padding: 0;
-    height: auto;
+
+    /* 🔥 key fix */
+    height: 100%;
+    overflow: hidden;
   }
 
   :root {
@@ -16,16 +19,11 @@
     --line: 26px;
   }
 
-  body {
-    overflow: hidden; /* prevents page scroll bars */
-  }
-
   .pad {
     position: relative;
     width: 100%;
-
-    /* key change: allow natural expansion instead of fixed viewport height */
-    min-height: 100vh;
+    height: 100vh;   /* 🔥 replaces min-height */
+    overflow: hidden;
 
     padding: 26px 20px 40px 56px;
 
@@ -59,10 +57,7 @@
 
   textarea {
     width: 100%;
-
-    /* 🔥 KEY FIX: removes internal scroll behavior */
-    height: auto;
-    min-height: calc(100vh - 60px);
+    height: 100%;
 
     border: none;
     outline: none;
@@ -78,7 +73,8 @@
     text-transform: none;
     letter-spacing: normal;
 
-    overflow: hidden; /* removes scrollbar inside textarea */
+    /* 🔥 removes all internal scroll artifacts */
+    overflow: hidden;
   }
 </style>
 </head>
