@@ -41,7 +41,6 @@
     color: rgba(0,0,0,0.85);
   }
 
-  /* red margin line */
   .pad::before {
     content: "";
     position: absolute;
@@ -52,11 +51,11 @@
     background: rgba(200, 60, 60, 0.25);
   }
 
+  /* editor */
   .editor {
     width: 100%;
     height: 100%;
     outline: none;
-    border: none;
 
     font-family: var(--handwriting);
     font-size: 18px;
@@ -64,59 +63,19 @@
 
     white-space: pre-wrap;
     word-wrap: break-word;
-
-    position: relative;
-    z-index: 2;
   }
 
-  /* placeholder overlay */
-  .placeholder {
-    position: absolute;
-    top: 26px;
-    left: 56px;
-    right: 20px;
-
-    font-family: var(--handwriting);
-    font-size: 18px;
-    line-height: var(--line);
-
+  /* fallback placeholder (CSS-only, Notion-safe) */
+  .editor:empty::before {
+    content: "notes";
     color: rgba(0,0,0,0.35);
-    pointer-events: none;
-
-    z-index: 1;
-  }
-
-  .hidden {
-    display: none;
   }
 </style>
 </head>
 
 <body>
   <div class="pad">
-    <div class="placeholder" id="placeholder">notes</div>
-
-    <div class="editor"
-         id="editor"
-         contenteditable="true"
-         spellcheck="false"></div>
+    <div class="editor" contenteditable="true" spellcheck="false"></div>
   </div>
-
-<script>
-  const editor = document.getElementById("editor");
-  const placeholder = document.getElementById("placeholder");
-
-  function updatePlaceholder() {
-    if (editor.textContent.trim().length === 0) {
-      placeholder.classList.remove("hidden");
-    } else {
-      placeholder.classList.add("hidden");
-    }
-  }
-
-  editor.addEventListener("input", updatePlaceholder);
-  updatePlaceholder();
-</script>
-
 </body>
 </html>
