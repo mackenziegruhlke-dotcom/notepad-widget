@@ -8,10 +8,6 @@
   html, body {
     margin: 0;
     padding: 0;
-
-    /* 🔥 CRITICAL: no forced viewport height */
-    height: auto;
-    min-height: 100%;
     overflow: hidden;
   }
 
@@ -24,10 +20,7 @@
     position: relative;
     width: 100%;
 
-    /* 🔥 key fix: use auto instead of viewport units */
     min-height: 100vh;
-
-    /* prevent padding from causing overflow */
     box-sizing: border-box;
 
     padding: 26px 20px 40px 56px;
@@ -47,6 +40,8 @@
     line-height: var(--line);
 
     color: rgba(0,0,0,0.85);
+
+    overflow: hidden;
   }
 
   .pad::before {
@@ -59,33 +54,29 @@
     background: rgba(200, 60, 60, 0.25);
   }
 
-  textarea {
+  /* 🔥 KEY CHANGE */
+  .editor {
     width: 100%;
+    min-height: 100%;
 
-    /* 🔥 IMPORTANT FIX */
-    min-height: calc(100vh - 76px);
-    height: auto;
-
-    border: none;
     outline: none;
-    background: transparent;
-    resize: none;
+    border: none;
 
     font-family: var(--handwriting);
     font-size: 18px;
     line-height: var(--line);
 
-    overflow: hidden;
-
-    text-transform: none;
-    letter-spacing: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
 </style>
 </head>
 
 <body>
   <div class="pad">
-    <textarea placeholder="notes"></textarea>
+    <div class="editor" contenteditable="true" spellcheck="false">
+notes
+    </div>
   </div>
 </body>
 </html>
