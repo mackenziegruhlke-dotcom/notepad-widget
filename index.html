@@ -8,7 +8,7 @@
   html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: hidden; /* hard stop */
   }
 
   :root {
@@ -16,10 +16,12 @@
     --line: 26px;
   }
 
+  /* 🔥 KEY FIX: slightly smaller than viewport */
   .pad {
     position: relative;
     width: 100%;
-    height: calc(100vh - 6px);
+    height: calc(100vh - 6px); /* <- the fix that removes the scroll */
+
     box-sizing: border-box;
 
     padding: 26px 20px 40px 56px;
@@ -39,6 +41,7 @@
     line-height: var(--line);
 
     color: rgba(0,0,0,0.85);
+    overflow: hidden;
   }
 
   .pad::before {
@@ -51,11 +54,12 @@
     background: rgba(200, 60, 60, 0.25);
   }
 
-  /* editor */
   .editor {
     width: 100%;
     height: 100%;
+
     outline: none;
+    border: none;
 
     font-family: var(--handwriting);
     font-size: 18px;
@@ -64,18 +68,14 @@
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-
-  /* fallback placeholder (CSS-only, Notion-safe) */
-  .editor:empty::before {
-    content: "notes";
-    color: rgba(0,0,0,0.35);
-  }
 </style>
 </head>
 
 <body>
   <div class="pad">
-    <div class="editor" contenteditable="true" spellcheck="false"></div>
+    <div class="editor" contenteditable="true" spellcheck="false">
+notes
+    </div>
   </div>
 </body>
 </html>
