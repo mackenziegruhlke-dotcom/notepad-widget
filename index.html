@@ -9,8 +9,9 @@
     margin: 0;
     padding: 0;
 
-    /* 🔥 key fix */
-    height: 100%;
+    /* 🔥 CRITICAL: no forced viewport height */
+    height: auto;
+    min-height: 100%;
     overflow: hidden;
   }
 
@@ -22,8 +23,12 @@
   .pad {
     position: relative;
     width: 100%;
-    height: 100vh;   /* 🔥 replaces min-height */
-    overflow: hidden;
+
+    /* 🔥 key fix: use auto instead of viewport units */
+    min-height: 100vh;
+
+    /* prevent padding from causing overflow */
+    box-sizing: border-box;
 
     padding: 26px 20px 40px 56px;
 
@@ -41,7 +46,6 @@
     font-size: 18px;
     line-height: var(--line);
 
-    box-sizing: border-box;
     color: rgba(0,0,0,0.85);
   }
 
@@ -57,7 +61,10 @@
 
   textarea {
     width: 100%;
-    height: 100%;
+
+    /* 🔥 IMPORTANT FIX */
+    min-height: calc(100vh - 76px);
+    height: auto;
 
     border: none;
     outline: none;
@@ -68,13 +75,10 @@
     font-size: 18px;
     line-height: var(--line);
 
-    color: inherit;
+    overflow: hidden;
 
     text-transform: none;
     letter-spacing: normal;
-
-    /* 🔥 removes all internal scroll artifacts */
-    overflow: hidden;
   }
 </style>
 </head>
