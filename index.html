@@ -18,6 +18,8 @@
   .pad {
     position: relative;
     width: 100%;
+
+    /* 🔧 IMPORTANT: allow page to grow instead of scroll box */
     min-height: 100vh;
 
     padding: 26px 20px 40px 56px;
@@ -40,7 +42,6 @@
     color: rgba(0,0,0,0.85);
   }
 
-  /* red margin line */
   .pad::before {
     content: "";
     position: absolute;
@@ -53,6 +54,8 @@
 
   textarea {
     width: 100%;
+
+    /* 🔥 KEY FIX: auto-grow instead of fixed height */
     min-height: calc(100vh - 60px);
 
     border: none;
@@ -69,7 +72,7 @@
     text-transform: none;
     letter-spacing: normal;
 
-    overflow: hidden;
+    overflow: hidden; /* removes scrollbar */
   }
 </style>
 </head>
