@@ -8,6 +8,7 @@
   html, body {
     margin: 0;
     padding: 0;
+    height: auto;
   }
 
   :root {
@@ -15,11 +16,15 @@
     --line: 26px;
   }
 
+  body {
+    overflow: hidden; /* prevents page scroll bars */
+  }
+
   .pad {
     position: relative;
     width: 100%;
 
-    /* 🔧 IMPORTANT: allow page to grow instead of scroll box */
+    /* key change: allow natural expansion instead of fixed viewport height */
     min-height: 100vh;
 
     padding: 26px 20px 40px 56px;
@@ -55,7 +60,8 @@
   textarea {
     width: 100%;
 
-    /* 🔥 KEY FIX: auto-grow instead of fixed height */
+    /* 🔥 KEY FIX: removes internal scroll behavior */
+    height: auto;
     min-height: calc(100vh - 60px);
 
     border: none;
@@ -72,7 +78,7 @@
     text-transform: none;
     letter-spacing: normal;
 
-    overflow: hidden; /* removes scrollbar */
+    overflow: hidden; /* removes scrollbar inside textarea */
   }
 </style>
 </head>
