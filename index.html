@@ -20,9 +20,8 @@
     position: relative;
     width: 100%;
     height: calc(100vh - 6px);
-
     box-sizing: border-box;
-    
+
     padding: 26px 20px 40px 56px;
 
     background-color: #f7f1c6;
@@ -39,7 +38,6 @@
     font-size: 18px;
     line-height: var(--line);
 
-    box-sizing: border-box;
     color: rgba(0,0,0,0.85);
   }
 
@@ -55,8 +53,6 @@
 
   textarea {
     width: 100%;
-
-    /* 🔥 KEY FIX: auto-grow instead of fixed height */
     min-height: calc(100vh - 60px);
 
     border: none;
@@ -69,18 +65,36 @@
     line-height: var(--line);
 
     color: inherit;
-
     text-transform: none;
     letter-spacing: normal;
 
-    overflow: hidden; /* removes scrollbar */
+    overflow: hidden;
+    box-sizing: border-box;
   }
 </style>
 </head>
 
 <body>
-  <div class="pad">
-    <textarea placeholder="notes"></textarea>
-  </div>
+
+<div class="pad">
+  <textarea id="notes" placeholder="notes"></textarea>
+</div>
+
+<script>
+const textarea = document.getElementById("notes");
+const STORAGE_KEY = "legalPadNotes";
+
+// Load saved notes
+const saved = localStorage.getItem(STORAGE_KEY);
+if (saved !== null) {
+  textarea.value = saved;
+}
+
+// Save automatically whenever you type
+textarea.addEventListener("input", () => {
+  localStorage.setItem(STORAGE_KEY, textarea.value);
+});
+</script>
+
 </body>
 </html>
